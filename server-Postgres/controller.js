@@ -2,15 +2,14 @@ const client = require('../Models/db-Postgres/database.js');
 
 let controller = {
   get: (req, res) => {
-    console.log('get request received');
-    client.query('SELECT question FROM qanda HAVING votes = 5', (err, res) => {
-      console.log(err ? err.stack : res.rows[0].message);
-      client.end();
-    })    
-  },
-  post: (req, res) => {
-    console.log('post request received');
-  }
-}
-
+    const query = {
+      text: 'SELECT * FROM qanda WHERE votes = 5 ORDER BY date ASC LIMIT 10'
+    }
+    client.query(query, (err, qAndA) => {
+      if (err) {
+        console.log('error querying db from controller: ', err.stack);
+      }
+      res.status(200).send(qAndA.rows); 
+    });
+}};
 module.exports = controller;

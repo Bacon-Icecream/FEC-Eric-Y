@@ -5,7 +5,3 @@ router.route('/qAndA')
 .get(controller.get);
 
 module.exports = router;
-
-
-
-
