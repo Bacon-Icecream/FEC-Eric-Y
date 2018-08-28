@@ -7,7 +7,6 @@ require('newrelic');
 
 const app = express();
 const PORT = process.argv[2] || 5000;
-// events.EventEmitter.prototype._maxListeners = 100;
 
 app.use(parser.json());
 app.use(parser.urlencoded({extended: true}));

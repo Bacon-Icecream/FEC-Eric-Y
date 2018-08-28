@@ -31,32 +31,29 @@ class QandA extends React.Component {
   }
 
   fetchData() {
-    console.log('fetching data')
+    // console.log('fetching data');
     let options = {
       params: {
         listName: this.state.listName
       }
     }
-    let t1 = performance.now();
     // for (let i = 0; i < 9999; i++) {
     //   this.sendRequest(options);
     // }
     axios.get('/api/qAndA', options)
       .then(result => {
         this.setState({ qandas: result.data.slice(0, 5) });
-        let t2 = performance.now();
-        console.log('time: ', t2 - t1, ' ms');
       })
       .catch(err => console.log('error sending get request to server: ', err));
   }
   
-  sendRequest(options) {
-    axios.get('/api/qAndA', options)
-      .then(result => {
-   
-      })
-      .catch(err => console.log(err));
-  }
+  // sendRequest(options) {
+  //   axios.get('/api/qAndA', options)
+  //     .then(result => {
+  //     })
+  //     .catch(err => console.log(err));
+  // }
+  
   render() {
     const { qandas } = this.state;
     return(
